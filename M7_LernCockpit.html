@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M7 · Lern-Cockpit — Qualität prüfen und verbessern</title>
+<style>
+  :root{
+    --bg:#0b0f17; --bg2:#111826; --card:#151d2c; --card2:#1b2435;
+    --ink:#e8edf6; --mut:#8a98b0; --line:#26324a;
+    --hot:#ff4d6d; --warm:#ffb020; --cool:#37d39b;
+    --acc:#5b8cff; --acc2:#9d7bff;
+    --glow:0 0 0 1px rgba(91,140,255,.25), 0 18px 40px -18px rgba(0,0,0,.8);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Segoe UI",system-ui,Arial,sans-serif; color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(91,140,255,.14), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(157,123,255,.12), transparent 55%),
+      var(--bg);
+    line-height:1.5; padding-bottom:80px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
+
+  /* HERO */
+  header.hero{padding:46px 0 26px;}
+  .kicker{font:600 12px/1 "Segoe UI";letter-spacing:.32em;text-transform:uppercase;color:var(--acc);}
+  h1{font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-.02em;margin:10px 0 6px;
+     background:linear-gradient(90deg,#fff, #b9ccff 55%, #c9b6ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .lead{color:var(--mut);max-width:680px;font-size:15px;}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .pill{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);
+        padding:7px 13px;border-radius:999px;font-size:13px;color:var(--ink);}
+  .pill b{color:var(--acc);}
+
+  /* TOOLBAR */
+  .bar{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px);
+       background:rgba(11,15,23,.72);border-bottom:1px solid var(--line);margin-top:24px;}
+  .bar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 20px;}
+  .btn{cursor:pointer;border:1px solid var(--line);background:var(--card2);color:var(--ink);
+       padding:9px 15px;border-radius:10px;font-size:13.5px;font-weight:600;transition:.15s;display:inline-flex;gap:8px;align-items:center;}
+  .btn:hover{border-color:var(--acc);transform:translateY(-1px);}
+  .btn.on{background:linear-gradient(90deg,var(--acc),var(--acc2));border-color:transparent;color:#fff;box-shadow:0 8px 20px -8px var(--acc);}
+  .legend{margin-left:auto;display:flex;gap:14px;font-size:12.5px;color:var(--mut);flex-wrap:wrap;}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle;}
+  .d-hot{background:var(--hot);} .d-warm{background:var(--warm);} .d-cool{background:var(--cool);}
+
+  /* RADAR / FREQUENCY STRIP */
+  .radar{margin:26px 0 8px;background:linear-gradient(180deg,var(--card),var(--bg2));
+         border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:var(--glow);}
+  .radar h3{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:14px;}
+  .rrow{display:flex;align-items:center;gap:12px;margin:9px 0;font-size:13.5px;}
+  .rname{width:200px;flex:none;color:var(--ink);}
+  .rtrack{flex:1;height:10px;background:#0e1422;border-radius:6px;overflow:hidden;border:1px solid var(--line);}
+  .rfill{height:100%;border-radius:6px;}
+  .rval{width:64px;flex:none;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums;font-size:12.5px;}
+  @media(max-width:620px){.rname{width:120px;}}
+
+  /* CARDS GRID */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px;}
+  @media(max-width:780px){.grid{grid-template-columns:1fr;}}
+  .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);
+        border-radius:18px;padding:20px 20px 18px;position:relative;overflow:hidden;}
+  .card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--acc);opacity:.9;}
+  .card.hot::before{background:linear-gradient(90deg,var(--hot),#ff8aa0);}
+  .card.warm::before{background:linear-gradient(90deg,var(--warm),#ffd27a);}
+  .card.cool::before{background:linear-gradient(90deg,var(--cool),#8ef0cf);}
+  .card.span{grid-column:1/-1;}
+  .chead{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
+  .cnum{font-weight:800;font-size:13px;color:#0b0f17;background:var(--acc);border-radius:8px;
+        min-width:30px;height:30px;display:grid;place-items:center;flex:none;}
+  .card.hot .cnum{background:var(--hot);} .card.warm .cnum{background:var(--warm);} .card.cool .cnum{background:var(--cool);}
+  .ctitle{font-size:17px;font-weight:700;letter-spacing:-.01em;}
+  .freq{font-size:11px;color:var(--mut);margin-top:2px;}
+  .badge{margin-left:auto;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;border:1px solid var(--line);flex:none;}
+  .b-hot{color:var(--hot);border-color:rgba(255,77,109,.4);background:rgba(255,77,109,.08);}
+  .b-warm{color:var(--warm);border-color:rgba(255,176,32,.4);background:rgba(255,176,32,.08);}
+  .b-cool{color:var(--cool);border-color:rgba(55,211,155,.4);background:rgba(55,211,155,.08);}
+
+  .card p{font-size:14px;margin:7px 0;color:var(--ink);}
+  .card ul{margin:6px 0 6px 2px;padding-left:18px;font-size:13.5px;}
+  .card li{margin:4px 0;}
+  .q{color:var(--mut);font-size:13px;}
+  small.src{color:var(--mut);font-size:11.5px;}
+
+  /* reveal / Abfrage-Modus */
+  .a{background:linear-gradient(180deg,#0f1726,#0c1320);border:1px solid var(--line);
+     border-radius:10px;padding:10px 13px;margin:8px 0;transition:.2s;}
+  .a .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;display:block;margin-bottom:4px;}
+  body.quiz .a .inner{filter:blur(7px);opacity:.55;cursor:pointer;user-select:none;transition:.2s;}
+  body.quiz .a .inner.show{filter:none;opacity:1;}
+  body.quiz .a::after{content:"👆 tippen zum Aufdecken";position:absolute;}
+  .a{position:relative;}
+  body.quiz .a .hint{display:block;}
+  .a .hint{display:none;position:absolute;top:10px;right:13px;font-size:10.5px;color:var(--mut);}
+  .a .inner.show ~ .hint{display:none;}
+
+  /* tables inside cards */
+  table{border-collapse:collapse;width:100%;margin:8px 0;font-size:13px;}
+  th{background:#0e1626;color:var(--acc);text-align:left;padding:7px 9px;border:1px solid var(--line);font-weight:700;}
+  td{border:1px solid var(--line);padding:6px 9px;vertical-align:top;}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+  code{background:#0c1320;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12.5px;color:#9ad;}
+
+  .mnem{display:inline-block;margin:6px 0;padding:7px 12px;border-radius:10px;font-size:13.5px;
+        background:linear-gradient(90deg,rgba(157,123,255,.16),rgba(91,140,255,.10));
+        border:1px solid rgba(157,123,255,.35);}
+  .mnem b{color:#c9b6ff;letter-spacing:.04em;}
+  .warn{border-left:3px solid var(--warm);background:rgba(255,176,32,.07);padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:13.5px;}
+
+  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;color:var(--mut);font-size:12.5px;text-align:center;}
+
+  /* PRINT */
+  @media print{
+    body{background:#fff;color:#111;}
+    .bar,.legend,.radar .rtrack{display:revert;}
+    .bar{position:static;}
+    body.quiz .a .inner{filter:none!important;opacity:1!important;}
+    .card,.radar{break-inside:avoid;box-shadow:none;border:1px solid #ccc;background:#fff;}
+    h1{color:#1f4e79;-webkit-text-fill-color:#1f4e79;}
+    .a{background:#f4f7fb;} th{color:#1f4e79;background:#eef3f9;}
+    .btn,.bar .btn{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <div class="kicker">Modul 7 · DAA-Technikum</div>
+  <h1>Lern-Cockpit: Qualität prüfen&nbsp;&amp;&nbsp;verbessern</h1>
+  <p class="lead">Alles zum Auswendiglernen — destilliert aus der Musterklausur und 3 echten Klausuren (11/2024, 01/2025, 04/2025). Sortiert nach <b style="color:var(--hot)">tatsächlicher Prüfungshäufigkeit</b>.</p>
+  <div class="meta">
+    <span class="pill">⏱ <b>90&nbsp;min</b></span>
+    <span class="pill">🚫 <b>keine</b> Hilfsmittel</span>
+    <span class="pill">🎯 ca. <b>100&nbsp;Punkte</b></span>
+    <span class="pill">🧱 <b>4</b> feste Aufgabenblöcke</span>
+  </div>
+</div></header>
+
+<div class="bar"><div class="wrap">
+  <button class="btn" id="quizBtn">🙈 Abfrage-Modus</button>
+  <button class="btn" id="printBtn">🖨️ Drucken / PDF</button>
+  <div class="legend">
+    <span><span class="dot d-hot"></span>jede Klausur</span>
+    <span><span class="dot d-warm"></span>mehrfach</span>
+    <span><span class="dot d-cool"></span>einmal</span>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+  <!-- RADAR -->
+  <div class="radar">
+    <h3>📡 Prüfungsradar — wie oft kam das Thema in 4 Klausuren?</h3>
+    <div class="rrow"><span class="rname">8D-Methode</span><span class="rtrack"><span class="rfill" style="width:100%;background:var(--hot)"></span></span><span class="rval">4 / 4</span></div>
+    <div class="rrow"><span class="rname">Kano-Diagramm</span><span class="rtrack"><span class="rfill" style="width:100%;background:var(--hot)"></span></span><span class="rval">4 / 4</span></div>
+    <div class="rrow"><span class="rname">ISO 9000 / 9001 + Qualität</span><span class="rtrack"><span class="rfill" style="width:100%;background:var(--hot)"></span></span><span class="rval">4 / 4</span></div>
+    <div class="rrow"><span class="rname">FTA (Fehlerbaum)</span><span class="rtrack"><span class="rfill" style="width:75%;background:var(--warm)"></span></span><span class="rval">3 / 4</span></div>
+    <div class="rrow"><span class="rname">Kundenzufriedenheit</span><span class="rtrack"><span class="rfill" style="width:75%;background:var(--warm)"></span></span><span class="rval">3 / 4</span></div>
+    <div class="rrow"><span class="rname">7 Grundsätze QM</span><span class="rtrack"><span class="rfill" style="width:50%;background:var(--warm)"></span></span><span class="rval">2 / 4</span></div>
+    <div class="rrow"><span class="rname">PDCA / KVP</span><span class="rtrack"><span class="rfill" style="width:50%;background:var(--warm)"></span></span><span class="rval">2 / 4</span></div>
+    <div class="rrow"><span class="rname">FMEA (RPZ)</span><span class="rtrack"><span class="rfill" style="width:50%;background:var(--warm)"></span></span><span class="rval">2 / 4</span></div>
+    <div class="rrow"><span class="rname">APQP (5 Phasen)</span><span class="rtrack"><span class="rfill" style="width:50%;background:var(--warm)"></span></span><span class="rval">2 / 4</span></div>
+    <div class="rrow"><span class="rname">Ishikawa · Pareto · Regelkreis</span><span class="rtrack"><span class="rfill" style="width:25%;background:var(--cool)"></span></span><span class="rval">je 1 / 4</span></div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- 1 · 8D -->
+    <div class="card hot span">
+      <div class="chead"><span class="cnum">1</span>
+        <div><div class="ctitle">Die 8D-Methode</div><div class="freq">Reklamationsbearbeitung · Block 2/4</div></div>
+        <span class="badge b-hot">🔴 jede Klausur</span></div>
+      <p class="q">Was ist das? Strukturiertes 8-Schritte-Vorgehen bei Kundenreklamationen. <b>Reihenfolge D1→D8 sitzt!</b></p>
+      <div class="a"><span class="lab">D1–D8 in Reihenfolge</span><span class="hint">tippen</span>
+        <div class="inner">
+        <table>
+          <tr><th>#</th><th>Phase</th><th>Kern / Leitfrage</th></tr>
+          <tr><td>D1</td><td>Team zusammenstellen</td><td>Leitung + Experten, <b>interdisziplinär</b> (nicht nur Chef). „Wer macht was?“</td></tr>
+          <tr><td>D2</td><td>Problem beschreiben</td><td>genaue Beschreibung, Auswirkungen — <b>kein</b> Finanz-Fokus</td></tr>
+          <tr><td>D3</td><td>Sofortmaßnahmen</td><td><b>temporäre</b> Schadensbegrenzung, weitere Kunden betroffen?</td></tr>
+          <tr><td>D4</td><td>Ursache analysieren</td><td>Hauptursache, Zahlen/Daten/Fakten</td></tr>
+          <tr><td>D5</td><td>Gegenmaßnahmen planen</td><td>dauerhafte Maßnahmen, Alternativen, Kosten</td></tr>
+          <tr><td>D6</td><td>implementieren + Wirksamkeit prüfen</td><td><b>umsetzen</b> (nicht nur festlegen!) + testen: behoben?</td></tr>
+          <tr><td>D7</td><td>Wiederholung vermeiden</td><td>Stichproben, <b>FMEA einsetzen</b>, dokumentieren</td></tr>
+          <tr><td>D8</td><td>Teamerfolg würdigen</td><td>Leistung loben → Motivation</td></tr>
+        </table></div></div>
+      <div class="a"><span class="lab">Ziele der 8D (für „Begründen“-Aufgaben)</span><span class="hint">tippen</span>
+        <div class="inner">Reklamations-/Garantie-/Kulanzkosten <b>senken</b> · Qualität & Erlös <b>steigern</b> · professionelle Antwort → Ergebnis ist der <b>8D-Report</b> (Kunde↔Firma). Vorteile: wirtschaftlich, höhere Produktqualität, optimierte Prozesse, mehr Kundenzufriedenheit.</div></div>
+      <div class="a"><span class="lab">Typische 8D-Report-Fehler (Prüf-Aufgabe)</span><span class="hint">tippen</span>
+        <div class="inner">Team = nur 1 Person · beleidigende statt sachliche Problembeschreibung · reklamierte Teile zurück an Kunden · „Telefonat mit Lieferant“ ist <b>keine</b> Ursache · Eröffnung &amp; Abschluss am selben Tag · Report erst 2 Monate nach Reklamation eröffnet · „keine Rückmeldung = wirksam“ ist kein Nachweis · Geschäftsbeziehung abbrechen löst nichts · Verantwortlicher ist kein Teammitglied · Würdigung gehört zur Teamleitung.</div></div>
+    </div>
+
+    <!-- 2 · Kano -->
+    <div class="card hot span">
+      <div class="chead"><span class="cnum">2</span>
+        <div><div class="ctitle">Kano-Diagramm</div><div class="freq">Qualitätsplanung · Block 2 &amp; 3</div></div>
+        <span class="badge b-hot">🔴 jede Klausur</span></div>
+      <p class="q"><b>x = Erfüllungsgrad</b> (wie sehr erfüllt?) · <b>y = Zufriedenheit</b>. Kategorien immer <b>ausschreiben</b>.</p>
+      <div class="a"><span class="lab">Die 3 Forderungskategorien</span><span class="hint">tippen</span>
+        <div class="inner">
+        <table>
+          <tr><th>Kategorie</th><th>Wirkung</th><th>Kurve</th></tr>
+          <tr><td><b>Grundforderung</b> (Basis)</td><td>vorausgesetzt; fehlt → unzufrieden; vorhanden → kaum Freude</td><td>unten, flach</td></tr>
+          <tr><td><b>Qualitäts-/Leistungsf.</b></td><td>je mehr erfüllt, desto zufriedener (<b>linear</b>)</td><td>Diagonale</td></tr>
+          <tr><td><b>Begeisterungsf.</b></td><td>nicht erwartet → Überraschung/Begeisterung; Fehlen stört nicht</td><td>oben, steil</td></tr>
+        </table></div></div>
+      <div class="a"><span class="lab">Fragebogen auswerten (funktional + dysfunktional)</span><span class="hint">tippen</span>
+        <div class="inner">vorhanden „setze voraus/egal/akzeptiere“ <b>+</b> fehlt „stört sehr“ → <b>Grund</b> · vorhanden „freut sehr“ <b>+</b> fehlt „stört sehr“ → <b>Q+L</b> · vorhanden „freut sehr“ <b>+</b> fehlt „egal/voraus/akzeptiere“ → <b>Begeisterung</b>.</div></div>
+      <div class="mnem">🏨 <b>Eselsbrücke:</b> Hotel — sauberes Bett (Grund) · schnelles WLAN (Q+L) · gratis Sekt (Begeisterung)</div>
+    </div>
+
+    <!-- 3 · ISO -->
+    <div class="card hot">
+      <div class="chead"><span class="cnum">3</span>
+        <div><div class="ctitle">ISO 9000 / 9001 &amp; „Qualität“</div><div class="freq">Block 1</div></div>
+        <span class="badge b-hot">🔴</span></div>
+      <div class="a"><span class="lab">Titel der Normen (auswendig!)</span><span class="hint">tippen</span>
+        <div class="inner"><b>ISO 9000</b> = QM-Systeme – <b>Grundlagen und Begriffe</b> (erklärt Konzepte, nicht zertifizierbar).<br><b>ISO 9001</b> = QM-Systeme – <b>Anforderungen</b> (prozessorientiert, Basis für <b>Zertifizierung &amp; Audits</b>).</div></div>
+      <div class="a"><span class="lab">Definition Qualität</span><span class="hint">tippen</span>
+        <div class="inner"><b>Grad der Übereinstimmung</b> zwischen Erwartung/Anforderung und tatsächlichen Eigenschaften. (Erwartung → Prozess → Ergebnis)</div></div>
+      <div class="a"><span class="lab">Warum allgemeine Vorgaben?</span><span class="hint">tippen</span>
+        <div class="inner">Jede Firma ist anders → individuell; QMS wird erst bei der Einführung „mit Inhalt gefüllt“.</div></div>
+      <div class="a"><span class="lab">3 Doku-Ebenen (allgemein→speziell)</span><span class="hint">tippen</span>
+        <div class="inner">QM-<b>Handbuch</b> → <b>Verfahrens</b>anweisungen → <b>Arbeits</b>anweisungen</div></div>
+    </div>
+
+    <!-- 4 · 7 Grundsätze -->
+    <div class="card hot">
+      <div class="chead"><span class="cnum">4</span>
+        <div><div class="ctitle">7 Grundsätze des QM</div><div class="freq">nach ISO 9000 · Block 1</div></div>
+        <span class="badge b-warm">🟠 2×</span></div>
+      <div class="a"><span class="lab">Die 7 Grundsätze</span><span class="hint">tippen</span>
+        <div class="inner">1 Kundenorientierung · 2 Führung · 3 Engagement von Personen · 4 Prozessorientierter Ansatz · 5 Verbesserung · 6 Faktengestützte Entscheidungsfindung · 7 Beziehungsmanagement</div></div>
+      <div class="mnem"><b>K · F · E · P · V · F · B</b> — „Kunden Führen Engagiert Prozesse Verbessernd Faktenbasiert in Beziehungen“</div>
+    </div>
+
+    <!-- 5 · PDCA -->
+    <div class="card warm">
+      <div class="chead"><span class="cnum">5</span>
+        <div><div class="ctitle">PDCA / Demingkreis / KVP</div><div class="freq">Block 4</div></div>
+        <span class="badge b-warm">🟠 2×</span></div>
+      <div class="a"><span class="lab">Die 4 Phasen</span><span class="hint">tippen</span>
+        <div class="inner"><b>P</b>lan (planen: Ziele, Prozesse, Ressourcen) · <b>D</b>o (durchführen) · <b>C</b>heck (prüfen/verifizieren, dokumentieren) · <b>A</b>ct (Abweichungen + Gegenmaßnahmen umsetzen)</div></div>
+      <div class="a"><span class="lab">Unterschied KVP ↔ PDCA (Bewertungsfrage!)</span><span class="hint">tippen</span>
+        <div class="inner">Nicht identisch! <b>KVP = der Prozess/das Ziel</b> aller QM-Systeme · <b>PDCA = das Werkzeug</b> dafür.</div></div>
+      <div class="mnem">🍰 <b>Eselsbrücke:</b> Kuchen backen — Rezept (P) · backen (D) · probieren (C) · mehr Milch nächstes Mal (A)</div>
+    </div>
+
+    <!-- 6 · FTA -->
+    <div class="card warm">
+      <div class="chead"><span class="cnum">6</span>
+        <div><div class="ctitle">FTA — Fehlerbaumanalyse</div><div class="freq">Block 3 · Rechnen!</div></div>
+        <span class="badge b-warm">🟠 3×</span></div>
+      <div class="a"><span class="lab">Die entscheidende Rechenregel</span><span class="hint">tippen</span>
+        <div class="inner"><b>UND <code>&amp;</code> = mal (×)</b> — alle Eingänge nötig.<br><b>ODER <code>≥1</code> = plus (+)</b> — mindestens einer.<br>Bsp UND: 3%×0,95% ≈ <b>0,03%</b> · ODER: 0,2+0,15+0,25 = <b>0,6%</b></div></div>
+      <div class="a"><span class="lab">Wichtige Regeln &amp; Symbole</span><span class="hint">tippen</span>
+        <div class="inner">⚠️ Alle Wahrscheinlichkeiten auf <b>gleichen Zeitraum</b> beziehen! · <b>Kreis</b> = Basisereignis · <b>Dreieck</b> = Sekundär-/Übertragungseingang (kein Stern!) · Symbole nicht gedreht.</div></div>
+    </div>
+
+    <!-- 7 · FMEA -->
+    <div class="card warm">
+      <div class="chead"><span class="cnum">7</span>
+        <div><div class="ctitle">FMEA / P-FMEA</div><div class="freq">Block 3 · Rechnen!</div></div>
+        <span class="badge b-warm">🟠 2×</span></div>
+      <div class="a"><span class="lab">Die Formel</span><span class="hint">tippen</span>
+        <div class="inner"><b>RPZ = A × B × E</b><br>Auftreten × Bedeutung × Entdeckbarkeit (je 1–10)</div></div>
+      <div class="a"><span class="lab">Bewertungsskala (Schema)</span><span class="hint">tippen</span>
+        <div class="inner">
+        <table>
+          <tr><th>Stufe</th><th>A Auftreten</th><th>B Bedeutung</th><th>E Entdeckb.</th></tr>
+          <tr><td>top</td><td>unwahrsch. = 1</td><td>nicht bemerkt = 1</td><td>hoch = 1</td></tr>
+          <tr><td>mittel</td><td>gering = 4–6</td><td>verärgert = 7–8</td><td>gering = 5–7</td></tr>
+          <tr><td>schlecht</td><td>sehr wahrsch. = 10</td><td>nicht nutzbar = 9–10</td><td>unwahrsch. = 10</td></tr>
+        </table>
+        <b>Achtung:</b> bei Entdeckbarkeit ist <b>1 = gut</b> (gut entdeckbar).</div></div>
+    </div>
+
+    <!-- 8 · APQP -->
+    <div class="card warm">
+      <div class="chead"><span class="cnum">8</span>
+        <div><div class="ctitle">APQP — 5 Phasen</div><div class="freq">Qualitätsvorausplanung · Block 2</div></div>
+        <span class="badge b-warm">🟠 2×</span></div>
+      <div class="a"><span class="lab">Reihenfolge + Kern</span><span class="hint">tippen</span>
+        <div class="inner"><b>1 Planung</b> (Anforderungen, Lastenheft) → <b>2 Produktentwicklung</b> (Design-FMEA) → <b>3 Prozessentwicklung</b> (Prozess-FMEA, Control Plan) → <b>4 Produkt-/Prozessvalidierung</b> (Erstbemusterung, Serientest) → <b>5 Rückmeldung/Verbesserung</b></div></div>
+    </div>
+
+    <!-- 9 · Kundenzufriedenheit -->
+    <div class="card warm">
+      <div class="chead"><span class="cnum">9</span>
+        <div><div class="ctitle">Kundenzufriedenheit</div><div class="freq">Block 2 &amp; 3</div></div>
+        <span class="badge b-warm">🟠 3×</span></div>
+      <div class="a"><span class="lab">Loyale Kunden &amp; Messen</span><span class="hint">tippen</span>
+        <div class="inner">Stammkunden = <b>Marken-Botschafter</b> → Empfehlungen. Messen: Marktbeobachtung/-analyse, Befragung, Rückmeldebögen, Homepage-Umfragen, Marktforschung, Social Media.</div></div>
+      <div class="a"><span class="lab">⚠️ Die Denkfalle</span><span class="hint">tippen</span>
+        <div class="inner"><b>Wenige Beschwerden ≠ zufrieden!</b> Unzufriedene melden sich oft nicht, sondern meckern im Bekanntenkreis/Internet (Imageschaden) oder <b>wechseln den Anbieter</b>.</div></div>
+    </div>
+
+    <!-- 10 · Ishikawa / Pareto / Regelkreis -->
+    <div class="card cool span">
+      <div class="chead"><span class="cnum">10</span>
+        <div><div class="ctitle">Ishikawa · Pareto · Regelkreis</div><div class="freq">je einmal — trotzdem leicht abfragbar</div></div>
+        <span class="badge b-cool">🟢 je 1×</span></div>
+      <div class="a"><span class="lab">Ishikawa — die 7 M</span><span class="hint">tippen</span>
+        <div class="inner"><b>Mensch · Maschine · Material · Methode · Mitwelt · Messbarkeit · Management</b> (Ursache-Wirkung / Fischgräte für 1 Wirkung).</div></div>
+      <div class="a"><span class="lab">Pareto / ABC-Analyse</span><span class="hint">tippen</span>
+        <div class="inner"><b>80/20:</b> 80% der Wirkung aus 20% der Ursachen. Fehler nach Häufigkeit <b>absteigend sortieren</b>, wenige wichtige (A) zuerst angehen.</div></div>
+      <div class="a"><span class="lab">Qualitätsregelkreis</span><span class="hint">tippen</span>
+        <div class="inner"><b>SOLL</b> (Planung) vs. <b>IST</b> (Regelstrecke = Standardprozesse). Abweichung &gt; Toleranz → <b>Regler</b> (z.B. FMEA, Audit) greift ein. <b>Störgrößen</b> wirken von außen.</div></div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- SCHNELLCHECK -->
+  <div class="radar" style="margin-top:26px;">
+    <h3>✅ 60-Sekunden-Schnellcheck vor der Klausur</h3>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px 24px;font-size:13.5px;">
+      <span>① 8D — alle 8 Schritte in Reihenfolge 🔴</span>
+      <span>② Kano — Achsen + 3 Kategorien 🔴</span>
+      <span>③ 7 Grundsätze (K-F-E-P-V-F-B) 🟠</span>
+      <span>④ ISO 9000 vs. 9001 (Titel!) 🔴</span>
+      <span>⑤ PDCA + KVP≠PDCA 🟠</span>
+      <span>⑥ FTA: UND=× , ODER=+ 🟠</span>
+      <span>⑦ FMEA: RPZ = A×B×E 🟠</span>
+      <span>⑧ APQP — 5 Phasen 🟠</span>
+      <span>⑨ Kundenzufriedenheit + Denkfalle 🟠</span>
+      <span>⑩ 7M · Pareto 80/20 · Regelkreis 🟢</span>
+    </div>
+  </div>
+
+  <footer>
+    Quellen: M7-Musterklausur (Erwartungshorizont) + 3 Übungsklausuren vom 17.11.2024, 12.01.2025, 06.04.2025.<br>
+    ⚠️ Laut Erwartungshorizont kann deine Prüfung andere Inhalte haben — maßgeblich sind die Lernsituationsskripte (Kap. 4.2.2 &amp; 4.3.2). Dies ist der bewährte Kern.
+  </footer>
+</div>
+
+<script>
+  const body=document.body;
+  const qb=document.getElementById('quizBtn');
+  qb.addEventListener('click',()=>{
+    body.classList.toggle('quiz');
+    qb.classList.toggle('on');
+    qb.textContent = body.classList.contains('quiz') ? '🙉 Antworten zeigen' : '🙈 Abfrage-Modus';
+    // reset all reveals when toggling
+    document.querySelectorAll('.a .inner').forEach(el=>el.classList.remove('show'));
+  });
+  // tap to reveal in quiz mode
+  document.querySelectorAll('.a .inner').forEach(el=>{
+    el.addEventListener('click',()=>{ if(body.classList.contains('quiz')) el.classList.toggle('show'); });
+  });
+  document.getElementById('printBtn').addEventListener('click',()=>window.print());
+</script>
+</body>
+</html>
