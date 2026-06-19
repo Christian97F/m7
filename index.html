@@ -95,9 +95,14 @@
   tr:nth-child(even) td{background:rgba(255,255,255,.02);}
   code{background:#0c1320;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12.5px;color:#9ad;}
 
-  .ph{font-weight:700;color:#dbe6ff;margin-top:6px;}
-  .sub{margin:1px 0 2px 14px;color:var(--ink);}
-  .sub::before{content:"–  ";color:var(--mut);}
+  .ph{font-weight:700;color:#dbe6ff;margin:13px 0 5px;}
+  .ph:first-child{margin-top:2px;}
+  .sub{position:relative;margin:0 0 9px;padding-left:18px;color:var(--ink);line-height:1.4;}
+  .sub::before{content:"–";position:absolute;left:3px;top:0;color:var(--acc);font-weight:700;}
+  .sub:last-child{margin-bottom:2px;}
+  /* horizontal scrollbarer Rahmen für Tabellen (Handy) */
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0;border-radius:8px;}
+  .tw table{margin:0;min-width:340px;}
 
   .mnem{display:inline-block;margin:8px 0 2px;padding:8px 12px;border-radius:10px;font-size:13.5px;
         background:linear-gradient(90deg,rgba(157,123,255,.16),rgba(91,140,255,.10));
@@ -168,7 +173,7 @@
       <p class="q">8-Schritte-Vorgehen bei Kundenreklamationen. <b>Reihenfolge D1→D8 sitzt!</b></p>
       <div class="a"><span class="lab">D1–D8 in Reihenfolge</span><span class="hint">tippen</span>
         <div class="inner">
-        <table>
+        <div class="tw"><table>
           <tr><th>#</th><th>Phase</th><th>Kern / Leitfrage</th></tr>
           <tr><td>D1</td><td>Team zusammenstellen</td><td>Leitung + Experten, <b>interdisziplinär</b> (nicht nur Chef). „Wer macht was?“</td></tr>
           <tr><td>D2</td><td>Problem beschreiben</td><td>genaue Beschreibung, Auswirkungen — <b>kein</b> Finanz-Fokus</td></tr>
@@ -178,7 +183,7 @@
           <tr><td>D6</td><td>implementieren + Wirksamkeit prüfen</td><td><b>umsetzen</b> (nicht nur festlegen!) + testen: behoben?</td></tr>
           <tr><td>D7</td><td>Wiederholung vermeiden</td><td>Stichproben, <b>FMEA einsetzen</b>, dokumentieren</td></tr>
           <tr><td>D8</td><td>Teamerfolg würdigen</td><td>Leistung loben → Motivation</td></tr>
-        </table></div></div>
+        </table></div></div></div>
       <div class="a"><span class="lab">Ziele der 8D (für „Entscheiden/Begründen“ — ~9 Aspekte + Schluss)</span><span class="hint">tippen</span>
         <div class="inner">
           <div class="sub">Kosten für Reklamationen/Fehler deutlich reduzieren</div>
@@ -215,12 +220,12 @@
         <div class="inner">
           <div class="sub"><b>x-Achse = Erfüllungsgrad</b>: in welchem Maß sind die Anforderungen erfüllt?</div>
           <div class="sub"><b>y-Achse = Zufriedenheit</b>: je mehr erfüllt, desto höher</div>
-          <table>
+          <div class="tw"><table>
             <tr><th>Kategorie</th><th>Wirkung</th><th>Kurve</th></tr>
             <tr><td><b>Grundforderung</b> (Basis)</td><td>wird vorausgesetzt; fehlt → unzufrieden; vorhanden → kaum Freude</td><td>unten, flach</td></tr>
             <tr><td><b>Qualitäts-/Leistungsf.</b></td><td>je stärker erfüllt, desto zufriedener (<b>linear</b>)</td><td>Diagonale</td></tr>
             <tr><td><b>Begeisterungsf.</b></td><td>nicht erwartet → Überraschung/Begeisterung; Fehlen stört nicht</td><td>oben, steil</td></tr>
-          </table></div></div>
+          </table></div></div></div>
       <div class="a"><span class="lab">Fragebogen auswerten (funktional + dysfunktional)</span><span class="hint">tippen</span>
         <div class="inner">
           <div class="sub">vorhanden „setze voraus / egal / akzeptiere“ <b>+</b> fehlt „stört sehr“ → <b>Grundforderung</b></div>
@@ -340,12 +345,12 @@
         <div class="inner"><b>RPZ = A × B × E</b><br>Auftreten × Bedeutung × Entdeckbarkeit (je 1–10)</div></div>
       <div class="a"><span class="lab">Bewertungsskala (Schema)</span><span class="hint">tippen</span>
         <div class="inner">
-        <table>
+        <div class="tw"><table>
           <tr><th>Stufe</th><th>A Auftreten</th><th>B Bedeutung</th><th>E Entdeckb.</th></tr>
           <tr><td>top</td><td>unwahrsch. = 1</td><td>nicht bemerkt = 1</td><td>hoch = 1</td></tr>
           <tr><td>mittel</td><td>gering = 4–6</td><td>verärgert = 7–8</td><td>gering = 5–7</td></tr>
           <tr><td>schlecht</td><td>sehr wahrsch. = 10</td><td>nicht nutzbar = 9–10</td><td>unwahrsch. = 10</td></tr>
-        </table>
+        </table></div>
         <b>Achtung:</b> bei Entdeckbarkeit ist <b>1 = gut</b> (gut entdeckbar).</div></div>
     </div>
 
