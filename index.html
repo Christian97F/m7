@@ -20,11 +20,10 @@
       radial-gradient(1200px 600px at 80% -10%, rgba(91,140,255,.14), transparent 60%),
       radial-gradient(900px 500px at -10% 10%, rgba(157,123,255,.12), transparent 55%),
       var(--bg);
-    line-height:1.5; padding-bottom:80px;
+    line-height:1.55; padding-bottom:80px;
   }
   .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
 
-  /* HERO */
   header.hero{padding:46px 0 26px;}
   .kicker{font:600 12px/1 "Segoe UI";letter-spacing:.32em;text-transform:uppercase;color:var(--acc);}
   h1{font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-.02em;margin:10px 0 6px;
@@ -35,7 +34,6 @@
         padding:7px 13px;border-radius:999px;font-size:13px;color:var(--ink);}
   .pill b{color:var(--acc);}
 
-  /* TOOLBAR */
   .bar{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px);
        background:rgba(11,15,23,.72);border-bottom:1px solid var(--line);margin-top:24px;}
   .bar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 20px;}
@@ -47,18 +45,16 @@
   .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle;}
   .d-hot{background:var(--hot);} .d-warm{background:var(--warm);} .d-cool{background:var(--cool);}
 
-  /* RADAR / FREQUENCY STRIP */
   .radar{margin:26px 0 8px;background:linear-gradient(180deg,var(--card),var(--bg2));
          border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:var(--glow);}
   .radar h3{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:14px;}
   .rrow{display:flex;align-items:center;gap:12px;margin:9px 0;font-size:13.5px;}
-  .rname{width:200px;flex:none;color:var(--ink);}
-  .rtrack{flex:1;height:10px;background:#0e1422;border-radius:6px;overflow:hidden;border:1px solid var(--line);}
-  .rfill{height:100%;border-radius:6px;}
+  .rname{width:210px;flex:none;color:var(--ink);}
+  .rtrack{flex:1;height:12px;background:#0e1422;border-radius:7px;overflow:hidden;border:1px solid var(--line);}
+  .rfill{display:block;height:100%;border-radius:7px;}
   .rval{width:64px;flex:none;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums;font-size:12.5px;}
-  @media(max-width:620px){.rname{width:120px;}}
+  @media(max-width:620px){.rname{width:128px;}}
 
-  /* CARDS GRID */
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px;}
   @media(max-width:780px){.grid{grid-template-columns:1fr;}}
   .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);
@@ -80,48 +76,45 @@
   .b-cool{color:var(--cool);border-color:rgba(55,211,155,.4);background:rgba(55,211,155,.08);}
 
   .card p{font-size:14px;margin:7px 0;color:var(--ink);}
-  .card ul{margin:6px 0 6px 2px;padding-left:18px;font-size:13.5px;}
-  .card li{margin:4px 0;}
   .q{color:var(--mut);font-size:13px;}
-  small.src{color:var(--mut);font-size:11.5px;}
 
-  /* reveal / Abfrage-Modus */
-  .a{background:linear-gradient(180deg,#0f1726,#0c1320);border:1px solid var(--line);
+  .a{position:relative;background:linear-gradient(180deg,#0f1726,#0c1320);border:1px solid var(--line);
      border-radius:10px;padding:10px 13px;margin:8px 0;transition:.2s;}
-  .a .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;display:block;margin-bottom:4px;}
-  body.quiz .a .inner{filter:blur(7px);opacity:.55;cursor:pointer;user-select:none;transition:.2s;}
+  .a .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700;display:block;margin-bottom:5px;}
+  .a .inner{font-size:13.6px;}
+  .a .inner b{color:#dbe6ff;}
+  body.quiz .a .inner{filter:blur(7px);opacity:.55;cursor:pointer;user-select:none;}
   body.quiz .a .inner.show{filter:none;opacity:1;}
-  body.quiz .a::after{content:"👆 tippen zum Aufdecken";position:absolute;}
-  .a{position:relative;}
-  body.quiz .a .hint{display:block;}
   .a .hint{display:none;position:absolute;top:10px;right:13px;font-size:10.5px;color:var(--mut);}
-  .a .inner.show ~ .hint{display:none;}
+  body.quiz .a .hint{display:block;}
+  body.quiz .a .inner.show ~ .hint{display:none;}
 
-  /* tables inside cards */
-  table{border-collapse:collapse;width:100%;margin:8px 0;font-size:13px;}
+  table{border-collapse:collapse;width:100%;margin:8px 0;font-size:12.8px;}
   th{background:#0e1626;color:var(--acc);text-align:left;padding:7px 9px;border:1px solid var(--line);font-weight:700;}
   td{border:1px solid var(--line);padding:6px 9px;vertical-align:top;}
   tr:nth-child(even) td{background:rgba(255,255,255,.02);}
   code{background:#0c1320;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12.5px;color:#9ad;}
 
-  .mnem{display:inline-block;margin:6px 0;padding:7px 12px;border-radius:10px;font-size:13.5px;
+  .ph{font-weight:700;color:#dbe6ff;margin-top:6px;}
+  .sub{margin:1px 0 2px 14px;color:var(--ink);}
+  .sub::before{content:"–  ";color:var(--mut);}
+
+  .mnem{display:inline-block;margin:8px 0 2px;padding:8px 12px;border-radius:10px;font-size:13.5px;
         background:linear-gradient(90deg,rgba(157,123,255,.16),rgba(91,140,255,.10));
         border:1px solid rgba(157,123,255,.35);}
   .mnem b{color:#c9b6ff;letter-spacing:.04em;}
-  .warn{border-left:3px solid var(--warm);background:rgba(255,176,32,.07);padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:13.5px;}
+  .warn{border-left:3px solid var(--warm);background:rgba(255,176,32,.07);padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:13.4px;}
 
   footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;color:var(--mut);font-size:12.5px;text-align:center;}
 
-  /* PRINT */
   @media print{
     body{background:#fff;color:#111;}
-    .bar,.legend,.radar .rtrack{display:revert;}
     .bar{position:static;}
     body.quiz .a .inner{filter:none!important;opacity:1!important;}
     .card,.radar{break-inside:avoid;box-shadow:none;border:1px solid #ccc;background:#fff;}
     h1{color:#1f4e79;-webkit-text-fill-color:#1f4e79;}
-    .a{background:#f4f7fb;} th{color:#1f4e79;background:#eef3f9;}
-    .btn,.bar .btn{display:none;}
+    .a{background:#f4f7fb;} .a .inner b{color:#1f4e79;} th{color:#1f4e79;background:#eef3f9;}
+    .btn{display:none;}
   }
 </style>
 </head>
@@ -130,7 +123,7 @@
 <header class="hero"><div class="wrap">
   <div class="kicker">Modul 7 · DAA-Technikum</div>
   <h1>Lern-Cockpit: Qualität prüfen&nbsp;&amp;&nbsp;verbessern</h1>
-  <p class="lead">Alles zum Auswendiglernen — destilliert aus der Musterklausur und 3 echten Klausuren (11/2024, 01/2025, 04/2025). Sortiert nach <b style="color:var(--hot)">tatsächlicher Prüfungshäufigkeit</b>.</p>
+  <p class="lead">Alles zum Auswendiglernen — destilliert aus der Musterklausur und 3 echten Klausuren (11/2024, 01/2025, 04/2025). Jede Schreib-/Stichpunkt-Aufgabe ist damit in <b style="color:var(--cool)">vollem Umfang</b> lösbar.</p>
   <div class="meta">
     <span class="pill">⏱ <b>90&nbsp;min</b></span>
     <span class="pill">🚫 <b>keine</b> Hilfsmittel</span>
@@ -151,22 +144,20 @@
 
 <div class="wrap">
 
-  <!-- RADAR -->
   <div class="radar">
     <h3>📡 Prüfungsradar — wie oft kam das Thema in 4 Klausuren?</h3>
-    <div class="rrow"><span class="rname">8D-Methode</span><span class="rtrack"><span class="rfill" style="width:100%;background:var(--hot)"></span></span><span class="rval">4 / 4</span></div>
-    <div class="rrow"><span class="rname">Kano-Diagramm</span><span class="rtrack"><span class="rfill" style="width:100%;background:var(--hot)"></span></span><span class="rval">4 / 4</span></div>
-    <div class="rrow"><span class="rname">ISO 9000 / 9001 + Qualität</span><span class="rtrack"><span class="rfill" style="width:100%;background:var(--hot)"></span></span><span class="rval">4 / 4</span></div>
-    <div class="rrow"><span class="rname">FTA (Fehlerbaum)</span><span class="rtrack"><span class="rfill" style="width:75%;background:var(--warm)"></span></span><span class="rval">3 / 4</span></div>
-    <div class="rrow"><span class="rname">Kundenzufriedenheit</span><span class="rtrack"><span class="rfill" style="width:75%;background:var(--warm)"></span></span><span class="rval">3 / 4</span></div>
-    <div class="rrow"><span class="rname">7 Grundsätze QM</span><span class="rtrack"><span class="rfill" style="width:50%;background:var(--warm)"></span></span><span class="rval">2 / 4</span></div>
-    <div class="rrow"><span class="rname">PDCA / KVP</span><span class="rtrack"><span class="rfill" style="width:50%;background:var(--warm)"></span></span><span class="rval">2 / 4</span></div>
-    <div class="rrow"><span class="rname">FMEA (RPZ)</span><span class="rtrack"><span class="rfill" style="width:50%;background:var(--warm)"></span></span><span class="rval">2 / 4</span></div>
-    <div class="rrow"><span class="rname">APQP (5 Phasen)</span><span class="rtrack"><span class="rfill" style="width:50%;background:var(--warm)"></span></span><span class="rval">2 / 4</span></div>
-    <div class="rrow"><span class="rname">Ishikawa · Pareto · Regelkreis</span><span class="rtrack"><span class="rfill" style="width:25%;background:var(--cool)"></span></span><span class="rval">je 1 / 4</span></div>
+    <div class="rrow"><span class="rname">8D-Methode</span><span class="rtrack"><span class="rfill" style="width:100%;background:linear-gradient(90deg,#ff4d6d,#ff8aa0)"></span></span><span class="rval">4 / 4</span></div>
+    <div class="rrow"><span class="rname">Kano-Diagramm</span><span class="rtrack"><span class="rfill" style="width:100%;background:linear-gradient(90deg,#ff4d6d,#ff8aa0)"></span></span><span class="rval">4 / 4</span></div>
+    <div class="rrow"><span class="rname">ISO 9000 / 9001 + Qualität</span><span class="rtrack"><span class="rfill" style="width:100%;background:linear-gradient(90deg,#ff4d6d,#ff8aa0)"></span></span><span class="rval">4 / 4</span></div>
+    <div class="rrow"><span class="rname">FTA (Fehlerbaum)</span><span class="rtrack"><span class="rfill" style="width:75%;background:linear-gradient(90deg,#ffb020,#ffd27a)"></span></span><span class="rval">3 / 4</span></div>
+    <div class="rrow"><span class="rname">Kundenzufriedenheit</span><span class="rtrack"><span class="rfill" style="width:75%;background:linear-gradient(90deg,#ffb020,#ffd27a)"></span></span><span class="rval">3 / 4</span></div>
+    <div class="rrow"><span class="rname">7 Grundsätze QM</span><span class="rtrack"><span class="rfill" style="width:50%;background:linear-gradient(90deg,#ffb020,#ffd27a)"></span></span><span class="rval">2 / 4</span></div>
+    <div class="rrow"><span class="rname">PDCA / KVP</span><span class="rtrack"><span class="rfill" style="width:50%;background:linear-gradient(90deg,#ffb020,#ffd27a)"></span></span><span class="rval">2 / 4</span></div>
+    <div class="rrow"><span class="rname">FMEA (RPZ)</span><span class="rtrack"><span class="rfill" style="width:50%;background:linear-gradient(90deg,#ffb020,#ffd27a)"></span></span><span class="rval">2 / 4</span></div>
+    <div class="rrow"><span class="rname">APQP (5 Phasen)</span><span class="rtrack"><span class="rfill" style="width:50%;background:linear-gradient(90deg,#ffb020,#ffd27a)"></span></span><span class="rval">2 / 4</span></div>
+    <div class="rrow"><span class="rname">Ishikawa · Pareto · Regelkreis</span><span class="rtrack"><span class="rfill" style="width:25%;background:linear-gradient(90deg,#37d39b,#8ef0cf)"></span></span><span class="rval">je 1 / 4</span></div>
   </div>
 
-  <!-- GRID -->
   <div class="grid">
 
     <!-- 1 · 8D -->
@@ -174,7 +165,7 @@
       <div class="chead"><span class="cnum">1</span>
         <div><div class="ctitle">Die 8D-Methode</div><div class="freq">Reklamationsbearbeitung · Block 2/4</div></div>
         <span class="badge b-hot">🔴 jede Klausur</span></div>
-      <p class="q">Was ist das? Strukturiertes 8-Schritte-Vorgehen bei Kundenreklamationen. <b>Reihenfolge D1→D8 sitzt!</b></p>
+      <p class="q">8-Schritte-Vorgehen bei Kundenreklamationen. <b>Reihenfolge D1→D8 sitzt!</b></p>
       <div class="a"><span class="lab">D1–D8 in Reihenfolge</span><span class="hint">tippen</span>
         <div class="inner">
         <table>
@@ -182,16 +173,37 @@
           <tr><td>D1</td><td>Team zusammenstellen</td><td>Leitung + Experten, <b>interdisziplinär</b> (nicht nur Chef). „Wer macht was?“</td></tr>
           <tr><td>D2</td><td>Problem beschreiben</td><td>genaue Beschreibung, Auswirkungen — <b>kein</b> Finanz-Fokus</td></tr>
           <tr><td>D3</td><td>Sofortmaßnahmen</td><td><b>temporäre</b> Schadensbegrenzung, weitere Kunden betroffen?</td></tr>
-          <tr><td>D4</td><td>Ursache analysieren</td><td>Hauptursache, Zahlen/Daten/Fakten</td></tr>
+          <tr><td>D4</td><td>Ursache analysieren</td><td>Hauptursache, Zahlen/Daten/Fakten auswerten</td></tr>
           <tr><td>D5</td><td>Gegenmaßnahmen planen</td><td>dauerhafte Maßnahmen, Alternativen, Kosten</td></tr>
           <tr><td>D6</td><td>implementieren + Wirksamkeit prüfen</td><td><b>umsetzen</b> (nicht nur festlegen!) + testen: behoben?</td></tr>
           <tr><td>D7</td><td>Wiederholung vermeiden</td><td>Stichproben, <b>FMEA einsetzen</b>, dokumentieren</td></tr>
           <tr><td>D8</td><td>Teamerfolg würdigen</td><td>Leistung loben → Motivation</td></tr>
         </table></div></div>
-      <div class="a"><span class="lab">Ziele der 8D (für „Begründen“-Aufgaben)</span><span class="hint">tippen</span>
-        <div class="inner">Reklamations-/Garantie-/Kulanzkosten <b>senken</b> · Qualität & Erlös <b>steigern</b> · professionelle Antwort → Ergebnis ist der <b>8D-Report</b> (Kunde↔Firma). Vorteile: wirtschaftlich, höhere Produktqualität, optimierte Prozesse, mehr Kundenzufriedenheit.</div></div>
-      <div class="a"><span class="lab">Typische 8D-Report-Fehler (Prüf-Aufgabe)</span><span class="hint">tippen</span>
-        <div class="inner">Team = nur 1 Person · beleidigende statt sachliche Problembeschreibung · reklamierte Teile zurück an Kunden · „Telefonat mit Lieferant“ ist <b>keine</b> Ursache · Eröffnung &amp; Abschluss am selben Tag · Report erst 2 Monate nach Reklamation eröffnet · „keine Rückmeldung = wirksam“ ist kein Nachweis · Geschäftsbeziehung abbrechen löst nichts · Verantwortlicher ist kein Teammitglied · Würdigung gehört zur Teamleitung.</div></div>
+      <div class="a"><span class="lab">Ziele der 8D (für „Entscheiden/Begründen“ — ~9 Aspekte + Schluss)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">Kosten für Reklamationen/Fehler deutlich reduzieren</div>
+          <div class="sub">Garantie- & Gewährleistungskosten minimieren</div>
+          <div class="sub">Nacharbeit & Kulanzkosten möglichst wegfallen lassen</div>
+          <div class="sub">Qualität von Produkten/Dienstleistungen sicherstellen/erhöhen</div>
+          <div class="sub">dadurch Erlös der Organisation steigern</div>
+          <div class="sub">professionelle Antwort auf Reklamationen geben</div>
+          <div class="sub">Ergebnis = <b>8D-Report</b> (Austausch Kunde ↔ Organisation)</div>
+          <div class="ph">→ Vorteile: wirtschaftlich · höhere Produktqualität · optimierte Herstellprozesse · höhere Kundenzufriedenheit</div>
+          <div class="ph">Schluss: umgehend mit Reklamationsprozess beginnen — auch die <b>Norm fordert</b> Erfassung/Bearbeitung/Doku von Mängeln.</div>
+        </div></div>
+      <div class="a"><span class="lab">Typische 8D-Report-Fehler (Prüf-Aufgabe, 5 nennen)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">Team = nur 1 Person (muss mehrere sein)</div>
+          <div class="sub">beleidigende statt sachliche Problembeschreibung</div>
+          <div class="sub">reklamierte Teile zurück an Kunden geschickt</div>
+          <div class="sub">„Telefonat mit Lieferant“ ist <b>keine</b> Fehlerursache, sondern Maßnahme</div>
+          <div class="sub">Eröffnung &amp; Abschluss am selben Tag (unrealistisch)</div>
+          <div class="sub">Report erst ~2 Monate nach Reklamation eröffnet (zu spät)</div>
+          <div class="sub">„keine Rückmeldung = wirksam“ ist kein Wirksamkeitsnachweis</div>
+          <div class="sub">Geschäftsbeziehung abbrechen löst das Problem nicht</div>
+          <div class="sub">Verantwortlicher ist gar kein Teammitglied</div>
+          <div class="sub">Würdigung gehört zur Teamleitung, nicht „Wozu? Ist doch unser Job“</div>
+        </div></div>
     </div>
 
     <!-- 2 · Kano -->
@@ -199,72 +211,130 @@
       <div class="chead"><span class="cnum">2</span>
         <div><div class="ctitle">Kano-Diagramm</div><div class="freq">Qualitätsplanung · Block 2 &amp; 3</div></div>
         <span class="badge b-hot">🔴 jede Klausur</span></div>
-      <p class="q"><b>x = Erfüllungsgrad</b> (wie sehr erfüllt?) · <b>y = Zufriedenheit</b>. Kategorien immer <b>ausschreiben</b>.</p>
-      <div class="a"><span class="lab">Die 3 Forderungskategorien</span><span class="hint">tippen</span>
+      <div class="a"><span class="lab">Achsen + 3 Kategorien (immer ausschreiben!)</span><span class="hint">tippen</span>
         <div class="inner">
-        <table>
-          <tr><th>Kategorie</th><th>Wirkung</th><th>Kurve</th></tr>
-          <tr><td><b>Grundforderung</b> (Basis)</td><td>vorausgesetzt; fehlt → unzufrieden; vorhanden → kaum Freude</td><td>unten, flach</td></tr>
-          <tr><td><b>Qualitäts-/Leistungsf.</b></td><td>je mehr erfüllt, desto zufriedener (<b>linear</b>)</td><td>Diagonale</td></tr>
-          <tr><td><b>Begeisterungsf.</b></td><td>nicht erwartet → Überraschung/Begeisterung; Fehlen stört nicht</td><td>oben, steil</td></tr>
-        </table></div></div>
+          <div class="sub"><b>x-Achse = Erfüllungsgrad</b>: in welchem Maß sind die Anforderungen erfüllt?</div>
+          <div class="sub"><b>y-Achse = Zufriedenheit</b>: je mehr erfüllt, desto höher</div>
+          <table>
+            <tr><th>Kategorie</th><th>Wirkung</th><th>Kurve</th></tr>
+            <tr><td><b>Grundforderung</b> (Basis)</td><td>wird vorausgesetzt; fehlt → unzufrieden; vorhanden → kaum Freude</td><td>unten, flach</td></tr>
+            <tr><td><b>Qualitäts-/Leistungsf.</b></td><td>je stärker erfüllt, desto zufriedener (<b>linear</b>)</td><td>Diagonale</td></tr>
+            <tr><td><b>Begeisterungsf.</b></td><td>nicht erwartet → Überraschung/Begeisterung; Fehlen stört nicht</td><td>oben, steil</td></tr>
+          </table></div></div>
       <div class="a"><span class="lab">Fragebogen auswerten (funktional + dysfunktional)</span><span class="hint">tippen</span>
-        <div class="inner">vorhanden „setze voraus/egal/akzeptiere“ <b>+</b> fehlt „stört sehr“ → <b>Grund</b> · vorhanden „freut sehr“ <b>+</b> fehlt „stört sehr“ → <b>Q+L</b> · vorhanden „freut sehr“ <b>+</b> fehlt „egal/voraus/akzeptiere“ → <b>Begeisterung</b>.</div></div>
-      <div class="mnem">🏨 <b>Eselsbrücke:</b> Hotel — sauberes Bett (Grund) · schnelles WLAN (Q+L) · gratis Sekt (Begeisterung)</div>
+        <div class="inner">
+          <div class="sub">vorhanden „setze voraus / egal / akzeptiere“ <b>+</b> fehlt „stört sehr“ → <b>Grundforderung</b></div>
+          <div class="sub">vorhanden „freut sehr“ <b>+</b> fehlt „stört sehr“ → <b>Qualitäts-/Leistungsforderung</b></div>
+          <div class="sub">vorhanden „freut sehr“ <b>+</b> fehlt „egal / voraus / akzeptiere“ → <b>Begeisterungsforderung</b></div>
+        </div></div>
+      <div class="mnem">🏨 <b>Eselsbrücke (Hotel):</b><br>sauberes Bett = Grund · schnelles WLAN = Q+L · gratis Sekt = Begeisterung</div>
     </div>
 
     <!-- 3 · ISO -->
-    <div class="card hot">
+    <div class="card hot span">
       <div class="chead"><span class="cnum">3</span>
-        <div><div class="ctitle">ISO 9000 / 9001 &amp; „Qualität“</div><div class="freq">Block 1</div></div>
-        <span class="badge b-hot">🔴</span></div>
-      <div class="a"><span class="lab">Titel der Normen (auswendig!)</span><span class="hint">tippen</span>
-        <div class="inner"><b>ISO 9000</b> = QM-Systeme – <b>Grundlagen und Begriffe</b> (erklärt Konzepte, nicht zertifizierbar).<br><b>ISO 9001</b> = QM-Systeme – <b>Anforderungen</b> (prozessorientiert, Basis für <b>Zertifizierung &amp; Audits</b>).</div></div>
-      <div class="a"><span class="lab">Definition Qualität</span><span class="hint">tippen</span>
-        <div class="inner"><b>Grad der Übereinstimmung</b> zwischen Erwartung/Anforderung und tatsächlichen Eigenschaften. (Erwartung → Prozess → Ergebnis)</div></div>
-      <div class="a"><span class="lab">Warum allgemeine Vorgaben?</span><span class="hint">tippen</span>
-        <div class="inner">Jede Firma ist anders → individuell; QMS wird erst bei der Einführung „mit Inhalt gefüllt“.</div></div>
-      <div class="a"><span class="lab">3 Doku-Ebenen (allgemein→speziell)</span><span class="hint">tippen</span>
-        <div class="inner">QM-<b>Handbuch</b> → <b>Verfahrens</b>anweisungen → <b>Arbeits</b>anweisungen</div></div>
+        <div><div class="ctitle">ISO 9000 / 9001, „Qualität“ &amp; QMS-Grundlagen</div><div class="freq">Block 1</div></div>
+        <span class="badge b-hot">🔴 jede Klausur</span></div>
+      <div class="a"><span class="lab">Die zwei Normen — Titel + Inhalt (auswendig!)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="ph">ISO 9000 = QM-Systeme – <b>Grundlagen und Begriffe</b></div>
+          <div class="sub">Grundlage zum Verständnis der weiteren Normen</div>
+          <div class="sub">beschreibt Konzepte, erläutert alle Begriffe · nicht zertifizierbar</div>
+          <div class="ph">ISO 9001 = QM-Systeme – <b>Anforderungen</b></div>
+          <div class="sub">führt <b>prozessorientierten Ansatz</b> ein (Geschäftsprozesse im Mittelpunkt)</div>
+          <div class="sub"><b>Basis für Zertifizierung &amp; Audits</b>, beschreibt Mindestanforderungen</div>
+        </div></div>
+      <div class="a"><span class="lab">Begriff „Qualität“ (Schaubild erklären, ~6 P)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">zu Beginn der Entwicklung sollten Erwartungen/Anforderungen bekannt sein</div>
+          <div class="sub">Produktion/Prozess so gestalten, dass Ergebnisse gleichbleibend / reproduzierbar sind</div>
+          <div class="sub">Qualität = Gradmesser, inwieweit ein Produkt die geforderten Eigenschaften aufweist</div>
+          <div class="sub"><b>Qualität = Grad der Übereinstimmung</b> zwischen Erwartung/Anforderung und tatsächlichen Eigenschaften (Ablauf: Erwartung → Prozess → Ergebnis)</div>
+        </div></div>
+      <div class="a"><span class="lab">Warum sind die ISO-Vorgaben so allgemein? (~10 P inkl. Bereiche)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">nicht jede Firma ist gleich → muss individuell betrachtet werden</div>
+          <div class="sub">QMS wird erst bei der konkreten Einführung mit Inhalt gefüllt</div>
+          <div class="sub">in bestimmten Branchen kann es verbindlichere Normen geben</div>
+          <div class="ph">Festzulegende QM-Bereiche (nennen!):</div>
+          <div class="sub">Qualitätsziele · Qualitätspolitik · Qualitätsplanung</div>
+          <div class="sub">Qualitätssteuerung/-lenkung · Qualitätssicherung · Qualitätsverbesserung</div>
+        </div></div>
+      <div class="a"><span class="lab">3 Dokumentationsebenen (allgemein → speziell, + Stichwort)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub"><b>QM-Handbuch</b> — allgemein / übergreifend</div>
+          <div class="sub"><b>QM-Verfahrensanweisungen</b> — organisatorisch / fachlich</div>
+          <div class="sub"><b>Arbeitsanweisungen</b> — spezifisch / operativ</div>
+        </div></div>
+      <div class="a"><span class="lab">Führung vs. Unterstützung (ISO 9001 — Zuordnung)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub"><b>Führung</b> = Qualitätspolitik &amp; -ziele, Prozessansatz/risikobasiertes Denken fördern, QMS-Anforderungen ins Geschäft integrieren, Kundenzufriedenheits-Fokus, sicherstellen dass QMS seine Ergebnisse erreicht</div>
+          <div class="sub"><b>Unterstützung</b> = Ressourcen, Kompetenz &amp; Schulung der Mitarbeiter, Kommunikation festlegen, dokumentierte Information, Infrastruktur (Gebäude, IT, Ausrüstung)</div>
+        </div></div>
     </div>
 
     <!-- 4 · 7 Grundsätze -->
-    <div class="card hot">
+    <div class="card hot span">
       <div class="chead"><span class="cnum">4</span>
-        <div><div class="ctitle">7 Grundsätze des QM</div><div class="freq">nach ISO 9000 · Block 1</div></div>
+        <div><div class="ctitle">7 Grundsätze des QM</div><div class="freq">nach ISO 9000 · Block 1 — „nennen“ UND „erläutern“</div></div>
         <span class="badge b-warm">🟠 2×</span></div>
-      <div class="a"><span class="lab">Die 7 Grundsätze</span><span class="hint">tippen</span>
-        <div class="inner">1 Kundenorientierung · 2 Führung · 3 Engagement von Personen · 4 Prozessorientierter Ansatz · 5 Verbesserung · 6 Faktengestützte Entscheidungsfindung · 7 Beziehungsmanagement</div></div>
+      <div class="a"><span class="lab">7 Grundsätze + Erläuterung (je 1 Satz)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub"><b>Kundenorientierung</b> — Kundenbedürfnisse verstehen &amp; erfüllen</div>
+          <div class="sub"><b>Führung</b> — Leitung schafft klare Vision &amp; motivierende Umgebung</div>
+          <div class="sub"><b>Engagement von Personen</b> — alle Mitarbeiter einbinden für beste Leistung</div>
+          <div class="sub"><b>Prozessorientierter Ansatz</b> — Prozesse identifizieren, steuern, verbessern (Wertschöpfung)</div>
+          <div class="sub"><b>Verbesserung</b> — ständiges Streben nach Verbesserung von Prozessen/Produkten/DL</div>
+          <div class="sub"><b>Faktengestützte Entscheidungsfindung</b> — Entscheidungen auf Daten &amp; Fakten</div>
+          <div class="sub"><b>Beziehungsmanagement</b> — gute Beziehungen zu Lieferanten/Interessengruppen pflegen</div>
+        </div></div>
       <div class="mnem"><b>K · F · E · P · V · F · B</b> — „Kunden Führen Engagiert Prozesse Verbessernd Faktenbasiert in Beziehungen“</div>
     </div>
 
     <!-- 5 · PDCA -->
-    <div class="card warm">
+    <div class="card warm span">
       <div class="chead"><span class="cnum">5</span>
-        <div><div class="ctitle">PDCA / Demingkreis / KVP</div><div class="freq">Block 4</div></div>
+        <div><div class="ctitle">PDCA / Demingkreis &amp; KVP</div><div class="freq">Block 4 — oft „je 2 Stichpunkte pro Phase“</div></div>
         <span class="badge b-warm">🟠 2×</span></div>
-      <div class="a"><span class="lab">Die 4 Phasen</span><span class="hint">tippen</span>
-        <div class="inner"><b>P</b>lan (planen: Ziele, Prozesse, Ressourcen) · <b>D</b>o (durchführen) · <b>C</b>heck (prüfen/verifizieren, dokumentieren) · <b>A</b>ct (Abweichungen + Gegenmaßnahmen umsetzen)</div></div>
+      <div class="a"><span class="lab">4 Phasen — je 2 Stichpunkte (12-P-Aufgabe)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="ph">Plan (planen)</div>
+          <div class="sub">Qualitätspolitik &amp; Ziele festlegen</div>
+          <div class="sub">Prozesse, Abläufe, Ressourcen festlegen, um Kundenanforderungen zu erfüllen</div>
+          <div class="ph">Do (durchführen)</div>
+          <div class="sub">festgelegte Maßnahmen durchführen</div>
+          <div class="sub">beschlossene Maßnahmen verwirklichen</div>
+          <div class="ph">Check (prüfen)</div>
+          <div class="sub">überwachen &amp; prüfen, Messergebnisse verifizieren/validieren</div>
+          <div class="sub">Ergebnisse &amp; Analysen dokumentieren und berichten</div>
+          <div class="ph">Act (handeln)</div>
+          <div class="sub">erkannte Abweichungen + Gegenmaßnahmen umsetzen</div>
+          <div class="sub">Umgang mit Nichtkonformität durch Ursachenanalyse &amp; Gegenmaßnahmen</div>
+        </div></div>
       <div class="a"><span class="lab">Unterschied KVP ↔ PDCA (Bewertungsfrage!)</span><span class="hint">tippen</span>
-        <div class="inner">Nicht identisch! <b>KVP = der Prozess/das Ziel</b> aller QM-Systeme · <b>PDCA = das Werkzeug</b> dafür.</div></div>
-      <div class="mnem">🍰 <b>Eselsbrücke:</b> Kuchen backen — Rezept (P) · backen (D) · probieren (C) · mehr Milch nächstes Mal (A)</div>
+        <div class="inner">Eng verbunden, aber <b>nicht identisch</b>.<br><b>KVP</b> = kontinuierlicher Verbesserungs<b>prozess</b> = Grundlage/Ziel aller QM-Systeme.<br><b>PDCA</b> = das <b>Werkzeug</b> (Kreislauf), um den KVP umzusetzen.</div></div>
+      <div class="mnem">🍰 <b>Eselsbrücke (Kuchen):</b><br>Rezept (P) · backen (D) · probieren (C) · mehr Milch nächstes Mal (A)</div>
     </div>
 
     <!-- 6 · FTA -->
     <div class="card warm">
       <div class="chead"><span class="cnum">6</span>
-        <div><div class="ctitle">FTA — Fehlerbaumanalyse</div><div class="freq">Block 3 · Rechnen!</div></div>
+        <div><div class="ctitle">FTA — Fehlerbaumanalyse</div><div class="freq">Block 3 · zeichnen/rechnen</div></div>
         <span class="badge b-warm">🟠 3×</span></div>
       <div class="a"><span class="lab">Die entscheidende Rechenregel</span><span class="hint">tippen</span>
-        <div class="inner"><b>UND <code>&amp;</code> = mal (×)</b> — alle Eingänge nötig.<br><b>ODER <code>≥1</code> = plus (+)</b> — mindestens einer.<br>Bsp UND: 3%×0,95% ≈ <b>0,03%</b> · ODER: 0,2+0,15+0,25 = <b>0,6%</b></div></div>
+        <div class="inner"><b>UND <code>&amp;</code> = mal (×)</b> — alle Eingänge nötig.<br><b>ODER <code>≥1</code> = plus (+)</b> — mindestens einer.<br>Bsp UND: 3% × 0,95% ≈ <b>0,03%</b><br>Bsp ODER: 0,2 + 0,15 + 0,25 = <b>0,6%</b></div></div>
       <div class="a"><span class="lab">Wichtige Regeln &amp; Symbole</span><span class="hint">tippen</span>
-        <div class="inner">⚠️ Alle Wahrscheinlichkeiten auf <b>gleichen Zeitraum</b> beziehen! · <b>Kreis</b> = Basisereignis · <b>Dreieck</b> = Sekundär-/Übertragungseingang (kein Stern!) · Symbole nicht gedreht.</div></div>
+        <div class="inner">
+          <div class="sub">⚠️ alle Wahrscheinlichkeiten müssen auf den <b>gleichen Zeitraum</b> bezogen sein</div>
+          <div class="sub"><b>Kreis</b> = Basisereignis · <b>Dreieck</b> = Sekundär-/Übertragungseingang (kein Stern!)</div>
+          <div class="sub">Anschlüsse getrennt zuführen, Symbole nicht gedreht</div>
+        </div></div>
     </div>
 
     <!-- 7 · FMEA -->
     <div class="card warm">
       <div class="chead"><span class="cnum">7</span>
-        <div><div class="ctitle">FMEA / P-FMEA</div><div class="freq">Block 3 · Rechnen!</div></div>
+        <div><div class="ctitle">FMEA / P-FMEA</div><div class="freq">Block 3 · rechnen</div></div>
         <span class="badge b-warm">🟠 2×</span></div>
       <div class="a"><span class="lab">Die Formel</span><span class="hint">tippen</span>
         <div class="inner"><b>RPZ = A × B × E</b><br>Auftreten × Bedeutung × Entdeckbarkeit (je 1–10)</div></div>
@@ -280,54 +350,188 @@
     </div>
 
     <!-- 8 · APQP -->
-    <div class="card warm">
+    <div class="card warm span">
       <div class="chead"><span class="cnum">8</span>
-        <div><div class="ctitle">APQP — 5 Phasen</div><div class="freq">Qualitätsvorausplanung · Block 2</div></div>
+        <div><div class="ctitle">APQP — 5 Phasen der Qualitätsvorausplanung</div><div class="freq">Block 2 — oft „je 2 Stichpunkte pro Phase“</div></div>
         <span class="badge b-warm">🟠 2×</span></div>
-      <div class="a"><span class="lab">Reihenfolge + Kern</span><span class="hint">tippen</span>
-        <div class="inner"><b>1 Planung</b> (Anforderungen, Lastenheft) → <b>2 Produktentwicklung</b> (Design-FMEA) → <b>3 Prozessentwicklung</b> (Prozess-FMEA, Control Plan) → <b>4 Produkt-/Prozessvalidierung</b> (Erstbemusterung, Serientest) → <b>5 Rückmeldung/Verbesserung</b></div></div>
+      <div class="a"><span class="lab">5 Phasen in Reihenfolge — je 2 Stichpunkte (15-P-Aufgabe)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="ph">1. Planung</div>
+          <div class="sub">Anforderungen festlegen (Kundenanforderungen/Erwartungen)</div>
+          <div class="sub">technische &amp; wirtschaftliche Rahmenbedingungen, Projektplan → Ergebnis: <b>Lastenheft</b> + Qualitätssicherungsplan</div>
+          <div class="ph">2. Produktentwicklung</div>
+          <div class="sub">Designspezifikationen festlegen, Abstimmung mit Produktion/Lieferanten</div>
+          <div class="sub"><b>Produkt-/Design-FMEA</b> erstellen</div>
+          <div class="ph">3. Prozessentwicklung</div>
+          <div class="sub">Produktionsprozesse, Maschinen/Werkzeuge/Layout planen</div>
+          <div class="sub"><b>Prozess-FMEA</b> + Produktlenkungsplan (Control Plan) erstellen</div>
+          <div class="ph">4. Produkt- und Prozessvalidierung</div>
+          <div class="sub">Nachweis der Fertigungseignung, Testläufe (Prototypen/Prozess)</div>
+          <div class="sub"><b>Erstbemusterung</b>, erste Teile unter Serienbedingungen fertigen &amp; prüfen</div>
+          <div class="ph">5. Rückmeldung, Verbesserung, Beurteilung</div>
+          <div class="sub">Kundenzufriedenheit &amp; kontinuierliche Verbesserung durch Rückmeldungen</div>
+          <div class="sub">Sicherstellung der Produkt- und Prozessqualität, Rückkopplung ans Design-Team</div>
+        </div></div>
     </div>
 
-    <!-- 9 · Kundenzufriedenheit -->
-    <div class="card warm">
+    <!-- 9 · Qualitätsplanung + Regelkreis -->
+    <div class="card warm span">
       <div class="chead"><span class="cnum">9</span>
+        <div><div class="ctitle">Qualitätsplanung &amp; Qualitätsregelkreis</div><div class="freq">Block 1 &amp; 2</div></div>
+        <span class="badge b-warm">🟠</span></div>
+      <div class="a"><span class="lab">Qualitätsplanung erklären (~6 P)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub"><b>präventiv</b>: Fehler bereits im Vorfeld erkennen &amp; verhindern</div>
+          <div class="sub">umfasst alles, was <b>vor Produktionsbeginn</b> geklärt/vorbereitet/bereitgestellt wird</div>
+          <div class="sub">konkrete Ziele &amp; exakte Qualitätsanforderungen definieren</div>
+          <div class="sub">Prozesse festlegen, Ressourcen planen &amp; bereitstellen</div>
+          <div class="sub">sichert reibungslose Produktion &amp; vermeidet Fehler/Folgekosten</div>
+        </div></div>
+      <div class="a"><span class="lab">Qualitätsregelkreis erklären (~8 P)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">Qualitätsplanung definiert das <b>SOLL</b> (Ziel) = Vergleichsgröße</div>
+          <div class="sub"><b>IST</b> wird über die <b>Regelstrecke</b> (Standardprozesse/-abläufe) erzeugt</div>
+          <div class="sub">Abweichung SOLL/IST über Toleranz → analysieren &amp; bewerten</div>
+          <div class="sub"><b>Regler</b> (z. B. FMEA) eingreifen → Qualitätsniveau wiederherstellen</div>
+          <div class="sub">Regelmechanismen: Anweisungen, regelmäßige Audits, Prozessanpassungen</div>
+          <div class="sub"><b>Störgrößen</b> wirken von außen auf die Regelstrecke</div>
+        </div></div>
+    </div>
+
+    <!-- 10 · Kundenzufriedenheit -->
+    <div class="card warm span">
+      <div class="chead"><span class="cnum">10</span>
         <div><div class="ctitle">Kundenzufriedenheit</div><div class="freq">Block 2 &amp; 3</div></div>
         <span class="badge b-warm">🟠 3×</span></div>
-      <div class="a"><span class="lab">Loyale Kunden &amp; Messen</span><span class="hint">tippen</span>
-        <div class="inner">Stammkunden = <b>Marken-Botschafter</b> → Empfehlungen. Messen: Marktbeobachtung/-analyse, Befragung, Rückmeldebögen, Homepage-Umfragen, Marktforschung, Social Media.</div></div>
-      <div class="a"><span class="lab">⚠️ Die Denkfalle</span><span class="hint">tippen</span>
-        <div class="inner"><b>Wenige Beschwerden ≠ zufrieden!</b> Unzufriedene melden sich oft nicht, sondern meckern im Bekanntenkreis/Internet (Imageschaden) oder <b>wechseln den Anbieter</b>.</div></div>
+      <div class="a"><span class="lab">Loyale Kunden + Voraussetzungen + Messen</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="ph">Loyale Kunden (Stammkunden):</div>
+          <div class="sub">schenken immer wieder Vertrauen, treten als <b>Marken-Botschafter</b> auf → Empfehlungen → Neukunden</div>
+          <div class="ph">Voraussetzungen der Firma:</div>
+          <div class="sub">gute, zuverlässige, einfach handhabbare Produkte/DL</div>
+          <div class="sub">gute Kundenbetreuung, lesbare Anleitungen, zuverlässiger Service</div>
+          <div class="ph">Messen / Meinungen einholen:</div>
+          <div class="sub">Marktbeobachtung &amp; Marktanalyse (Kundenbefragung)</div>
+          <div class="sub">Rückmeldebögen, Homepage-Umfragen, Mailings/Gewinnspiel, Marktforschung, Social Media</div>
+        </div></div>
+      <div class="a"><span class="lab">⚠️ Denkfalle: wenige Beschwerden = Erfolg? (kritisch bewerten)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">Zahl der Beschwerden ist <b>kein</b> Indikator für die Gesamtzufriedenheit</div>
+          <div class="sub">viele Unzufriedene melden sich nicht beim Unternehmen…</div>
+          <div class="sub">…sondern im Bekanntenkreis/Internet (Imageschaden) oder wechseln einfach den Anbieter</div>
+          <div class="sub">bei geringer Rücklaufzahl sind <b>gar keine</b> Rückschlüsse möglich</div>
+        </div></div>
     </div>
 
-    <!-- 10 · Ishikawa / Pareto / Regelkreis -->
+    <!-- 11 · QMS-Vorteile -->
     <div class="card cool span">
-      <div class="chead"><span class="cnum">10</span>
-        <div><div class="ctitle">Ishikawa · Pareto · Regelkreis</div><div class="freq">je einmal — trotzdem leicht abfragbar</div></div>
+      <div class="chead"><span class="cnum">11</span>
+        <div><div class="ctitle">Vorteile eines QMS nach ISO 9001</div><div class="freq">Block 1 — „5 Vorteile, je 2 Sätze“</div></div>
+        <span class="badge b-cool">🟢</span></div>
+      <div class="a"><span class="lab">Vorteile (Name + kurze Begründung)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub"><b>Prozesssicherheit</b> — standardisierte Prozesse → weniger Fehler</div>
+          <div class="sub"><b>Kundenzufriedenheit</b> — bessere Erfüllung der Kundenanforderungen</div>
+          <div class="sub"><b>Wettbewerbsfähigkeit</b> — Zertifikat als Wettbewerbsvorteil</div>
+          <div class="sub"><b>Effizienzsteigerung</b> — optimierte Abläufe, bessere Ressourcennutzung</div>
+          <div class="sub"><b>Bessere Entscheidungen</b> — fundiert auf Daten &amp; Fakten</div>
+          <div class="sub"><b>Mitarbeitermotivation</b> — klare Verantwortlichkeiten, Schulungen</div>
+          <div class="sub"><b>Kontinuierliche Verbesserung</b> — nachhaltige Unternehmensentwicklung</div>
+          <div class="sub"><b>Compliance/Risikominimierung</b> — gesetzliche/regulatorische Anforderungen eingehalten</div>
+        </div></div>
+    </div>
+
+    <!-- 12 · Ishikawa + Pareto -->
+    <div class="card cool span">
+      <div class="chead"><span class="cnum">12</span>
+        <div><div class="ctitle">Ishikawa (7 M) &amp; Pareto</div><div class="freq">Block 1 &amp; 3</div></div>
         <span class="badge b-cool">🟢 je 1×</span></div>
       <div class="a"><span class="lab">Ishikawa — die 7 M</span><span class="hint">tippen</span>
-        <div class="inner"><b>Mensch · Maschine · Material · Methode · Mitwelt · Messbarkeit · Management</b> (Ursache-Wirkung / Fischgräte für 1 Wirkung).</div></div>
+        <div class="inner"><b>Mensch<br>Maschine<br>Material<br>Methode<br>Mitwelt<br>Messbarkeit<br>Management</b><br>Ursache-Wirkung-/Fischgräten-Diagramm für 1 Wirkung; Hauptgräten = die 7 M.</div></div>
       <div class="a"><span class="lab">Pareto / ABC-Analyse</span><span class="hint">tippen</span>
-        <div class="inner"><b>80/20:</b> 80% der Wirkung aus 20% der Ursachen. Fehler nach Häufigkeit <b>absteigend sortieren</b>, wenige wichtige (A) zuerst angehen.</div></div>
-      <div class="a"><span class="lab">Qualitätsregelkreis</span><span class="hint">tippen</span>
-        <div class="inner"><b>SOLL</b> (Planung) vs. <b>IST</b> (Regelstrecke = Standardprozesse). Abweichung &gt; Toleranz → <b>Regler</b> (z.B. FMEA, Audit) greift ein. <b>Störgrößen</b> wirken von außen.</div></div>
+        <div class="inner">
+          <div class="sub"><b>80/20:</b> ~80 % der Wirkung aus ~20 % der Ursachen</div>
+          <div class="sub">Fehler nach Häufigkeit <b>absteigend sortieren</b> (maßständliche Balken)</div>
+          <div class="sub">oft kumulierte %-Linie · die wenigen wichtigen (A) zuerst angehen</div>
+        </div></div>
+    </div>
+
+    <!-- 13 · Reflektieren -->
+    <div class="card hot span">
+      <div class="chead"><span class="cnum">13</span>
+        <div><div class="ctitle">Aussagen bewerten / reflektieren</div><div class="freq">Block 4 — kam in JEDER Klausur (Argumente parat haben!)</div></div>
+        <span class="badge b-hot">🔴</span></div>
+      <p class="q">Grundhaltung: QM <b>positiv</b> bewerten — bei negativem Tenor immer begründen, warum QM trotzdem nötig ist.</p>
+      <div class="a"><span class="lab">„QM ist nur Doku fürs Audit / unnötiger Aufwand“ → FALSCH</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">QM bindet zwar Arbeitszeit, sichert aber Erfüllung von Kunden- &amp; internationalen Anforderungen</div>
+          <div class="sub">schafft extern Vertrauen, intern reibungslosere Prozesse (KVP)</div>
+          <div class="sub">Doku dient nicht nur dem Audit, sondern Analysen &amp; Nachweis (z. B. Regress)</div>
+          <div class="sub">manche Aufträge gibt es ohne Zertifizierung gar nicht</div>
+        </div></div>
+      <div class="a"><span class="lab">„Nur die Geschäftsleitung muss dahinterstehen“ → greift zu kurz</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">Unterstützung der Führung ist grundsätzlich wichtig…</div>
+          <div class="sub">…aber QM muss von <b>allen</b> gelebt werden; Erfolg erst, wenn alle die Maßnahmen akzeptieren</div>
+          <div class="sub">(„Chef allein reicht nicht“ → richtig: Struktur aufbauen, alle MA überzeugen)</div>
+        </div></div>
+      <div class="a"><span class="lab">„Qualitätsziele sind überbewertet“ → FALSCH</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">keine Kritik an den Mitarbeitenden</div>
+          <div class="sub">werden aus der Qualitätspolitik abgeleitet (Kundenanforderung ↔ eigener Anspruch)</div>
+          <div class="sub">geben grundsätzlich Qualitätsansprüche vor, wirken nicht auf die „handwerkliche“ Arbeit</div>
+        </div></div>
+      <div class="a"><span class="lab">„Zertifizierung lohnt erst ab Firmengröße X“ → FALSCH</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">nicht an Mitarbeiterzahl/Umsatz festmachen</div>
+          <div class="sub">oft gerade bei Zulieferern nötig, um Aufträge zu bekommen</div>
+          <div class="sub">Vorteile (Kosten-/Risikominimierung) auch für kleine Firmen wertvoll</div>
+        </div></div>
+      <div class="a"><span class="lab">„Erst nur die Qualitätsprüfung einführen, Rest später“ → FALSCH</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">QMS ist ein <b>Gesamtsystem</b>, funktioniert nur als Ganzes</div>
+          <div class="sub">Qualitätsplanung und -lenkung sind elementare Bestandteile</div>
+        </div></div>
+      <div class="a"><span class="lab">Abstellmaßnahmen entwickeln (zu Fehlerursachen, begründet)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">fehlende Richtlinien → Richtlinien festlegen (einheitliche Entscheidungen)</div>
+          <div class="sub">fehlende Erfahrung → Schulungen; fehlende Infos → Prozesse anpassen, dass Infos vorliegen</div>
+          <div class="sub">Nachlässigkeit → prüfen ob Einzelfall; sonst Personalgespräch + Abstellmaßnahmen vereinbaren</div>
+        </div></div>
+    </div>
+
+    <!-- 14 · Kosten-Termin-Qualität -->
+    <div class="card cool span">
+      <div class="chead"><span class="cnum">14</span>
+        <div><div class="ctitle">Diagramm Kosten / Termintreue / Qualität</div><div class="freq">Block 1 (Musterklausur) — „Kernaussagen erklären“</div></div>
+        <span class="badge b-cool">🟢</span></div>
+      <div class="a"><span class="lab">Bedeutung für den Kunden über die Zeit (Kauf → Anlieferung)</span><span class="hint">tippen</span>
+        <div class="inner">
+          <div class="sub">zeigt die Bedeutung von Kosten, Termintreue &amp; Qualität für den Kunden, der kauft und später beliefert wird</div>
+          <div class="ph">Kosten:</div>
+          <div class="sub">beim Kauf hoch („wie viel zahle ich?“), bei Anlieferung kaum noch Bedeutung (ändern sich nicht mehr)</div>
+          <div class="ph">Termintreue:</div>
+          <div class="sub">beim Kauf untergeordnet (Lieferzeiten bekannt); je näher der Termin, desto wichtiger; nach Erhalt fast bedeutungslos</div>
+          <div class="ph">Qualität:</div>
+          <div class="sub">schon beim Kauf relevant, zeigt sich spätestens bei Auslieferung; bleibt über die Anlieferung hinaus hoch (Nutzung, Bewertung, Empfehlung)</div>
+        </div></div>
     </div>
 
   </div><!-- /grid -->
 
-  <!-- SCHNELLCHECK -->
   <div class="radar" style="margin-top:26px;">
     <h3>✅ 60-Sekunden-Schnellcheck vor der Klausur</h3>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px 24px;font-size:13.5px;">
-      <span>① 8D — alle 8 Schritte in Reihenfolge 🔴</span>
+      <span>① 8D — 8 Schritte + Ziele 🔴</span>
       <span>② Kano — Achsen + 3 Kategorien 🔴</span>
-      <span>③ 7 Grundsätze (K-F-E-P-V-F-B) 🟠</span>
-      <span>④ ISO 9000 vs. 9001 (Titel!) 🔴</span>
-      <span>⑤ PDCA + KVP≠PDCA 🟠</span>
+      <span>③ 7 Grundsätze + Erläuterung 🟠</span>
+      <span>④ ISO 9000 vs. 9001 + 6 QM-Bereiche 🔴</span>
+      <span>⑤ PDCA (2 Stichp./Phase) + KVP≠PDCA 🟠</span>
       <span>⑥ FTA: UND=× , ODER=+ 🟠</span>
       <span>⑦ FMEA: RPZ = A×B×E 🟠</span>
-      <span>⑧ APQP — 5 Phasen 🟠</span>
+      <span>⑧ APQP — 5 Phasen (2 Stichp.) 🟠</span>
       <span>⑨ Kundenzufriedenheit + Denkfalle 🟠</span>
-      <span>⑩ 7M · Pareto 80/20 · Regelkreis 🟢</span>
+      <span>⑩ Reflektieren: QM-Argumente parat 🔴</span>
     </div>
   </div>
 
@@ -344,10 +548,8 @@
     body.classList.toggle('quiz');
     qb.classList.toggle('on');
     qb.textContent = body.classList.contains('quiz') ? '🙉 Antworten zeigen' : '🙈 Abfrage-Modus';
-    // reset all reveals when toggling
     document.querySelectorAll('.a .inner').forEach(el=>el.classList.remove('show'));
   });
-  // tap to reveal in quiz mode
   document.querySelectorAll('.a .inner').forEach(el=>{
     el.addEventListener('click',()=>{ if(body.classList.contains('quiz')) el.classList.toggle('show'); });
   });
